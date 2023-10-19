@@ -1,16 +1,14 @@
 <script setup>
 import { onMounted, ref } from 'vue'
 import { fetchSuperheroes } from './client/fetchSuperHeroes'
-import HelloWorld from './components/HelloWorld.vue'
+import SuperheroesList from './components/SuperheroesList.vue'
 let items = ref([])
 const page = ref(1)
 
 onMounted(async () => {
   try {
     const data = await fetchSuperheroes(page)
-    console.log(JSON.stringify(data))
     items.value = data.results.map((item) => ({ ...item, clicks: 0 }))
-
   } catch (error) {
     console.error('Error fetching superheroes:', error)
     // Display a modal with the error - will be an improvement
@@ -19,7 +17,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <HelloWorld />
+  <SuperheroesList :items="items" />
 </template>
 
 <style scoped>
