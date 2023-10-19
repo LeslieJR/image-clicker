@@ -1,5 +1,21 @@
 <script setup>
+import { onMounted, ref } from 'vue'
+import { fetchSuperheroes } from './client/fetchSuperHeroes'
 import HelloWorld from './components/HelloWorld.vue'
+let items = ref([])
+const page = ref(1)
+
+onMounted(async () => {
+  try {
+    const data = await fetchSuperheroes(page)
+    console.log(JSON.stringify(data))
+    items.value = data.results.map((item) => ({ ...item, clicks: 0 }))
+
+  } catch (error) {
+    console.error('Error fetching superheroes:', error)
+    // Display a modal with the error - will be an improvement
+  }
+})
 </script>
 
 <template>
@@ -7,30 +23,4 @@ import HelloWorld from './components/HelloWorld.vue'
 </template>
 
 <style scoped>
-header {
-  line-height: 1.5;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-}
 </style>
