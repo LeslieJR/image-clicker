@@ -1,25 +1,24 @@
 import axios from 'axios';
 import { generateHash } from './generateHash';
 
+import {DEFAULT_LIMIT, MARVEL_API_ENDPOINT} from '../constants/index'
 export const fetchSuperheroes = async (page) => {
   const apikey = import.meta.env.VITE_APP_PUBLIC_KEY ?? '';
-  const limit = 12;
-  const offset = (page - 1) * limit;
+  const offset = (page - 1) * DEFAULT_LIMIT;
   const ts = Date.now();
   const hash = generateHash(ts, apikey);
-  const url = 'https://gateway.marvel.com:443/v1/public/characters';
   try {
-    const response = await axios.get(url, {
+    const {data} = await axios.get(MARVEL_API_ENDPOINT, {
       params: {
         apikey,
         ts,
         hash,
-        limit,
+        limit: DEFAULT_LIMIT,
         offset,
       },
     });
-    const data = response.data.data;
-    return data;
+   
+    return data.data;
   } catch (error) {
     console.error('Error fetching superheroes:', error);
     throw error;
