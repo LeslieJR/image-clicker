@@ -1,15 +1,16 @@
 <script setup>
 import { ref } from 'vue'
-import SuperheroeDetails from './SuperheroDetails.vue'
+const emit = defineEmits(['item-clicked']);
+
+import SuperheroDetails from './SuperheroDetails.vue'
 const props = defineProps(['items'])
 
 let selectedItem = ref(null)
 function showDetails(item) {
-  selectedItem.value = {
-    ...item,
-    clicks: ++item.clicks
-  }
+  emit('item-clicked', item);
+  selectedItem.value = item;
 }
+
 </script>
 
 <template>
@@ -17,7 +18,7 @@ function showDetails(item) {
     <v-row align="center" justify="center">
       <v-col cols="12" md="6">
         <v-row align="center" justify="center">
-          <v-col v-for="(item, index) in props.items" :key="index" cols="10" md="6" lg="4">
+          <v-col v-for="item in props.items" :key="item.id" cols="10" md="6" lg="4">
             <v-card
               class="d-flex align-center mx-auto card-height"
               dark
@@ -32,7 +33,7 @@ function showDetails(item) {
       </v-col>
       <v-col cols="12" sm="6" md="4" lg="3">
         <v-row align="center" justify="center" v-if="selectedItem">
-          <SuperheroeDetails :itemProps="selectedItem" />
+          <SuperheroDetails :itemProps="selectedItem" />
         </v-row>
         <v-row align="center" justify="center" v-else>
           <p>Select an item to see details</p>

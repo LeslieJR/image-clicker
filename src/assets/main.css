@@ -7,7 +7,9 @@
   font-weight: normal;
 }
 
-
+body{
+  background-image: linear-gradient(to top, #dfe9f3 0%, white 100%);
+}
 
 @media (min-width: 1024px) {
   body {
