@@ -18,6 +18,7 @@ npm install
 Inside the project directory, create a new file called .env.local. 
 This file will hold your environment variables.
 VITE_APP_PRIVATE_KEY = 'your private key'
+
 VITE_APP_PUBLIC_KEY = 'your public key'
 
 ### 4. Run the project: 
