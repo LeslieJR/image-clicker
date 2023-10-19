@@ -1,35 +1,30 @@
 # image-clicker
+## Steps to run the application
 
-This template should help get you started developing with Vue 3 in Vite.
+### 1. Clone the repository: 
 
-## Recommended IDE Setup
+Start by cloning the GitHub repository to your local machine.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+### 2. Install dependencies: 
 
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
+Navigate to the project directory and install the project dependencies. 
+Run the command:
 ```sh
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+### 3. Create a .env file: 
 
+Inside the project directory, create a new file called .env.local. 
+This file will hold your environment variables.
+VITE_APP_PRIVATE_KEY = 'your private key'
+VITE_APP_PUBLIC_KEY = 'your public key'
+
+### 4. Run the project: 
+
+Finally, you can start the development server and run the project. 
+Run the command:
 ```sh
 npm run dev
 ```
 
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
