@@ -7,7 +7,7 @@ let selectedItem = ref(null)
 function showDetails(item) {
   selectedItem.value = {
     ...item,
-    clicks: item.clicks + 1
+    clicks: ++item.clicks
   }
 }
 </script>
@@ -19,9 +19,8 @@ function showDetails(item) {
         <v-row align="center" justify="center">
           <v-col v-for="(item, index) in props.items" :key="index" cols="10" md="6" lg="4">
             <v-card
-              class="d-flex align-center mx-auto"
+              class="d-flex align-center mx-auto card-height"
               dark
-              height="100px"
               @click="showDetails(item)"
             >
               <v-card-title class="wrap-title">
@@ -47,5 +46,8 @@ function showDetails(item) {
   flex: auto;
   white-space: normal;
   word-break: break-word;
+}
+.card-height{
+  height: 10vh;
 }
 </style>
